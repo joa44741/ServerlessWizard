@@ -3,13 +3,13 @@ package com.draexlmaier.ia25.serverlesswizard;
 import com.draexlmaier.ia25.serverlesswizard.wizard.CommandLineWizard;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
 
 
-
     private static void printBanner() {
-        String bannerString = "    ____  ____ _  __    _____                           __\n" +
+        final String bannerString = "    ____  ____ _  __    _____                           __\n" +
                 "   / __ \\/ __ \\ |/ /   / ___/___  ______   _____  _____/ /__  __________\n" +
                 "  / / / / /_/ /   /    \\__ \\/ _ \\/ ___/ | / / _ \\/ ___/ / _ \\/ ___/ ___/\n" +
                 " / /_/ / _, _/   |    ___/ /  __/ /   | |/ /  __/ /  / /  __(__  |__  ) \n" +
@@ -25,16 +25,17 @@ public class Main {
         System.out.println("\n" + bannerString);
     }
 
-    private static CommandLineWizard chooseCloudPlattform(){
+    private static CommandLineWizard chooseCloudPlattform() {
         System.out.println("\nChoose one of the following Cloud Platforms: ");
-        Arrays.asList(CloudPlattform.values()).forEach(cloudPlattform -> System.out.println("- " + cloudPlattform));
-
-        System.out.println();
+        Arrays.asList(CloudPlattform.values()).forEach(cloudPlattform -> System.out.println("- " + cloudPlattform + " (Select " + cloudPlattform.ordinal() + "):"));
+        final Scanner scanner = new Scanner(System.in);
+        final int plattformOrdinal = scanner.nextInt();
+        System.out.println(CloudPlattform.values()[plattformOrdinal]);
         return CloudPlattform.AWS.getInstance();
     }
 
-    public static void main(String[] args) {
-	// write your code here
+    public static void main(final String[] args) {
+        // write your code here
 
         printBanner();
         final CommandLineWizard commandLineWizard = chooseCloudPlattform();

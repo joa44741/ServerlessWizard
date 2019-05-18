@@ -7,16 +7,22 @@ import com.draexlmaier.ia25.serverlesswizard.wizard.CommandLineWizard;
 import java.util.function.Supplier;
 
 public enum CloudPlattform {
-    AWS(AWSCommandLineWizard::new),
-    AZURE(AzureCommandLineWizard::new);
+    AWS(AWSCommandLineWizard::new, "aws"),
+    AZURE(AzureCommandLineWizard::new, "azure");
 
-    private CloudPlattform(Supplier<CommandLineWizard> cmdLineWizard){
+    private CloudPlattform(final Supplier<CommandLineWizard> cmdLineWizard, final String providerName) {
         this.instantiator = cmdLineWizard;
+        this.providerName = providerName;
     }
 
-    private Supplier<CommandLineWizard> instantiator;
+    private final Supplier<CommandLineWizard> instantiator;
+    private final String providerName;
 
     public CommandLineWizard getInstance() {
         return instantiator.get();
+    }
+
+    public String getProviderName() {
+        return providerName;
     }
 }
