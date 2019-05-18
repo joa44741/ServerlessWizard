@@ -8,5 +8,6 @@ public class AzureCommandLineWizard implements CommandLineWizard{
     @Override
     public void startWizard() {
 
+
     }
 }
