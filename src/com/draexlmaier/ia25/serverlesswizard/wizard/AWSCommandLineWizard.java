@@ -48,7 +48,9 @@ public class AWSCommandLineWizard implements CommandLineWizard {
         final String projectName = this.askForString("Project (used as prefix)");
         final String microserviceName = this.askForString("Microservice");
         final AWSServerlessYamlDTO.Service service = new AWSServerlessYamlDTO.Service(projectName + '-' + microserviceName);
-        final AWSServerlessYamlDTO.Provider provider = new AWSServerlessYamlDTO.Provider();
+        final AWSServerlessYamlDTO.Provider provider = null;
+
+        new AWSServerlessYamlDTO.Provider.ProviderBuilder();
     }
 
     private boolean askExistingFile() {
